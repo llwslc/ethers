@@ -1,0 +1,16 @@
+.App {
+  padding: 20px;
+  padding-top: 0;
+}
+
+textarea {
+  width: 100%;
+}
+
+.app-main-textarea {
+  height: 30vh;
+}
+
+.app-main-textarea-min {
+  height: 20vh;
+}
