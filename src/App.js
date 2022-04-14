@@ -15,9 +15,12 @@ function App(props) {
       const iface = new ethers.utils.Interface(jsonAbi);
       const abiFull = iface.format(ethers.utils.FormatTypes.full);
       const abiMini = iface.format(ethers.utils.FormatTypes.minimal);
+      const formatABI = abi => {
+        return JSON.stringify(abi).replace(/","/g, '",\n  "').replace(/^\[/g, '[\n  ').replace(/\]$/g, '\n]');
+      };
 
-      setOuputFullValue(JSON.stringify(abiFull));
-      setOuputMinValue(JSON.stringify(abiMini));
+      setOuputFullValue(formatABI(abiFull));
+      setOuputMinValue(formatABI(abiMini));
     } catch (error) {
       setOuputFullValue('');
       setOuputMinValue('');
@@ -31,9 +34,9 @@ function App(props) {
       <h2>Human-Readable ABI</h2>
       <textarea className="app-main-textarea" value={inputValue} onChange={onInputChange} />
       <h2>FULL</h2>
-      <textarea className="app-main-textarea-min" value={outputFullValue} readOnly />
+      <textarea className="app-main-textarea-min" value={outputFullValue} readOnly wrap="off" />
       <h2>MINIMAL</h2>
-      <textarea className="app-main-textarea-min" value={outputMinValue} readOnly />
+      <textarea className="app-main-textarea-min" value={outputMinValue} readOnly wrap="off" />
     </div>
   );
 }
