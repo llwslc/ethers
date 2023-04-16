@@ -14,3 +14,16 @@ textarea {
 .app-main-textarea-min {
   height: 20vh;
 }
+
+.app-main-textarea-line {
+  height: 2rem;
+}
+
+.app-main-encode {
+  display: flex;
+  justify-content: space-between;
+}
+
+.app-main-encode textarea {
+  width: 49%;
+}
