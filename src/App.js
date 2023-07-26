@@ -8,6 +8,7 @@ import './App.css';
 function App(props) {
   const [inputValue, setInputValue] = useState('');
   const [outputFullValue, setOuputFullValue] = useState('');
+  const [outputItfValue, setOutputItfValue] = useState('');
   const [outputMinValue, setOuputMinValue] = useState('');
   const [functionValue, setFunctionValue] = useState('');
   const [encodeValue, setEncodeValue] = useState('');
@@ -32,9 +33,24 @@ function App(props) {
       const abiMini = iface.format(ethers.utils.FormatTypes.minimal);
 
       setOuputFullValue(formatJSON(abiFull));
+      setOutputItfValue(`interface ItfSol {
+    ${abiFull
+      .map(_ => {
+        if (_.includes('function ')) {
+          if (_.includes('returns')) {
+            _ = _.replace('returns', 'external returns');
+          } else {
+            _ = `${_} external`;
+          }
+        }
+        return _;
+      })
+      .join(';\n    ')};
+}`);
       setOuputMinValue(formatJSON(abiMini));
     } catch (error) {
       setOuputFullValue('');
+      setOutputItfValue('')
       setOuputMinValue('');
     }
 
@@ -108,6 +124,8 @@ function App(props) {
       <textarea className="app-main-textarea" value={inputValue} onChange={onAbiInputChange} />
       <h2>FULL</h2>
       <textarea className="app-main-textarea-min" value={outputFullValue} readOnly wrap="off" />
+      <h2>INTERFACE</h2>
+      <textarea className="app-main-textarea-min" value={outputItfValue} readOnly wrap="off" />
       <h2>MINIMAL</h2>
       <textarea className="app-main-textarea-min" value={outputMinValue} readOnly wrap="off" />
       <h2>FUNCTION</h2>
