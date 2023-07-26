@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ethers/static/css/main.b5216c9e.css",
+    "main.js": "/ethers/static/js/main.dc4ba937.js",
+    "index.html": "/ethers/index.html",
+    "main.b5216c9e.css.map": "/ethers/static/css/main.b5216c9e.css.map",
+    "main.dc4ba937.js.map": "/ethers/static/js/main.dc4ba937.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b5216c9e.css",
+    "static/js/main.dc4ba937.js"
+  ]
+}
